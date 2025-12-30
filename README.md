@@ -1,8 +1,8 @@
 ## Screenshots
 
-![login-desktop](image.png)
+<img width="1512" height="785" alt="image" src="https://github.com/user-attachments/assets/d460a569-c4bd-497d-a224-ad0092056164" />
 
-<img width="1512" height="785" alt="image" src="https://github.com/user-attachments/assets/3fb1e52c-cd24-4301-8767-8d0ec70ff200" />
+![login-desktop](image.png)
 
 <img width="1512" height="785" alt="image" src="https://github.com/user-attachments/assets/49dc2e8e-caa6-4d67-8b70-12d2486da86a" />
 
