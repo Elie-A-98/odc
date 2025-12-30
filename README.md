@@ -2,11 +2,11 @@
 
 ![login-desktop](image.png)
 
-![login-mobile](image-1.png)
+<img width="1512" height="785" alt="image" src="https://github.com/user-attachments/assets/3fb1e52c-cd24-4301-8767-8d0ec70ff200" />
 
-![home-page](image-2.png)
+<img width="1512" height="785" alt="image" src="https://github.com/user-attachments/assets/49dc2e8e-caa6-4d67-8b70-12d2486da86a" />
 
-![products-page](image-3.png)
+
 
 ## How to run
 
