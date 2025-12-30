@@ -1,7 +1,7 @@
 ## How to run
 
 You need node version `22+`. I used node 24 in development but node 22 should be fine.
-If you have `nvm`, you can do `nvm install` `nvm use` to easily use the configured node version.
+If you have `nvm`, you can do `nvm install 24` `nvm use 24` to easily switch to node 24.
 
 First install the dependencies by running `npm install`
 
