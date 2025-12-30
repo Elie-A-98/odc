@@ -1,3 +1,13 @@
+## Screenshots
+
+![login-desktop](image.png)
+
+![login-mobile](image-1.png)
+
+![home-page](image-2.png)
+
+![products-page](image-3.png)
+
 ## How to run
 
 You need node version `22+`. I used node 24 in development but node 22 should be fine.
@@ -35,6 +45,22 @@ For naming conventions I followed kebab-case because I allow a file to export mo
 
 Finally I try to not export things that are used in 1 place because when scaled the global module gets messy.
 
+## Styling
+
+The app is fully responsive. I used fluid design and `postcss-pxtorem` to automatically convert almost all px values to rem.
+
+I added a theme but due to time constraints i started hardcoding some values. However the theme is fully spported with typescript intellicense and dynamic variables.
+
+The theme can change and it is built to support that, but because I ran out of time I left both the dark and light themes using the same palettes.
+
+
+
+Linaria adds vendor prefix so I didn't use any other plugin for that.
+
+I used radix unstyled primitives for the good composition and accessibility they offer, and implemented my own design theme.
+I am using Linaria which is a zero runtime css in js library and used it to inject my theme structure (inspired by mui theme). 
+So all the css in the application is statically generated at build time.
+
 ### Auth
 
 Auth is implemented using an HttpOnly session cookie. It is handled in my msw handlers
@@ -54,9 +80,3 @@ I focused mainly on the products and login pages, this is where I followed best 
 But in other pages, even in login and products pages, there is room for improvement in reusability and code structure, but I was iterating fast and I was planning to refactor a little at the end if I still had time.
 
 Regarding the size of the mock data, I added 40 items because I am currently rendering about 6 to 10 products at once on ui and the pagination is done on the backend server (msw api), so adding more items would not slow down the ui. That is also why so I only implemented pagination without virtualization (that I would have done with react virtuozo).
-
-I used radix unstyled primitives for the good composition and accessibility they offer, and implemented my own design theme.
-I am using Linaria which is a zero runtime css library. I created my own theme structure (inspired by mui theme) and applied it using Linaria. So all the css in the application is statically generated at build time, even styled components.
-Linaria allowed me to write css syntax, and still have the composability of js modules and react components, with 0 runtime.
-
-The theme can change and it is built to support that, but because I ran out of time I left both the dark and light themes using the same palettes.
