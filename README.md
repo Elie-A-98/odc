@@ -13,6 +13,40 @@ To run in dev mode, use `npm run dev`.
 
 I used `msw` to mock the api layer, so there is no need to run something other than the frontend host. `msw` works by intercepting network calls using a service worker.
 
+## Design decisions
+
+### Structure 
+
+I've split the code into 4 layers: api (satisfies the backend), design (satisfies the design), app (satisfies both the backend, the design and the app's logic like routing and initialization) and lib (shared services and utilities)
+
+The dependency rule is: 
+- app can depend on api, design and lib (app can depend on any group - it's where the core features are implemented)
+- api can only depend on lib
+- design can only depend on lib
+
+I am not religious about this structure, and probably in a real big application dependencies would need to mix a bit, but I find that it helps unify the decision on how to compose components.
+
+You can another folder in the root called feature, this belongs in the app group since it's free to use all other groups. It's in root because it's easier to access.
+
+I considered a feature a page, so i followed next.js app router structure for url matching to represent also where this feature is rendered.
+`features/_shared` contain component that are shared between features. Ideally features should not use each other, and if something needs to be shared between them, I lift it up to the `_shared/` folder.
+
+For naming conventions I followed kebab-case because I allow a file to export more than 1 react component. I want to keep the files count small while grouping related things together.
+
+Finally I try to not export things that are used in 1 place because when scaled the global module gets messy.
+
+### Auth
+
+Auth is implemented using an HttpOnly session cookie. It is handled in my msw handlers
+
+### fetch
+
+I was planning to add axios and intercept network calls but I ran out of time and stuck to using a `wrappedFetch` that handles http error http responses.
+
+### Server State
+
+I used react query for the server state, and kept id the single source of truth so I didn't use a store for authorization.
+
 ## Comments
 
 I focused mainly on the products and login pages, this is where I followed best practices for components composition and accessibility. I added listing, pagination, filtering, decent image optimization, and used react query to represent the server state, and msw and a mock to abstract the backend layer.
