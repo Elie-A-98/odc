@@ -34,14 +34,14 @@ The dependency rule is:
 - api can only depend on lib
 - design can only depend on lib
 
-I am not religious about this structure, and probably in a real big application dependencies would need to mix a bit, but I find that it helps unify the decision on how to compose components.
+I am not religious about this structure, and probably in a real big application dependencies would need to mix a bit.
 
-You can another folder in the root called feature, this belongs in the app group since it's free to use all other groups. It's in root because it's easier to access.
+There's another folder in the root called feature, this belongs in the app group since it's free to use all other groups. It's in root because it's easier to access.
 
-I considered a feature a page, so i followed next.js app router structure for url matching to represent also where this feature is rendered.
+I considered a feature a page, so i followed next.js app router structure.
 `features/_shared` contain component that are shared between features. Ideally features should not use each other, and if something needs to be shared between them, I lift it up to the `_shared/` folder.
 
-For naming conventions I followed kebab-case because I allow a file to export more than 1 react component. I want to keep the files count small while grouping related things together.
+For naming conventions I followed kebab-case because I allow a file to export more than 1 react component.
 
 Finally I try to not export things that are used in 1 place because when scaled the global module gets messy.
 
@@ -53,13 +53,10 @@ I added a theme but due to time constraints i started hardcoding some values. Ho
 
 The theme can change and it is built to support that, but because I ran out of time I left both the dark and light themes using the same palettes.
 
+I used radix unstyled primitives for their good composition and accessibility, and implemented my own design theme.
 
-
-Linaria adds vendor prefix so I didn't use any other plugin for that.
-
-I used radix unstyled primitives for the good composition and accessibility they offer, and implemented my own design theme.
-I am using Linaria which is a zero runtime css in js library and used it to inject my theme structure (inspired by mui theme). 
-So all the css in the application is statically generated at build time.
+I used Linaria which is a zero runtime css in js library and used it to inject my theme structure (inspired by mui theme). So all the css in the application is statically generated at build time.
+Linaria also adds vendor prefix so I didn't use any other plugin for that.
 
 ### Auth
 
