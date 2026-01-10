@@ -368,7 +368,7 @@ export function cssFluidClamp(min: number, max: number) {
 /**
  *
  * @param path the path from the Theme
- * @returns a sematic token string representing a CSS var that points to a primitive token
+ * @returns the value of path in the theme
  */
 export function themeToken(path: TokenPath) {
   return `var(--${path})`;

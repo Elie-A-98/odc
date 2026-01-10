@@ -1,7 +1,6 @@
 import { styled } from "@linaria/react";
 import { themeToken } from "../../design/styling/theme/theme";
 import CompanyLogoSvg from "../../assets/company-logo.svg?react";
-import { H4 } from "../../design/components/headings";
 
 const Root = styled.div`
   height: ${themeToken("header-height")};
@@ -20,7 +19,7 @@ const LogoAndNameWrapper = styled.div`
   font-size: ${themeToken("typography-sizes-h4")};
 `;
 
-const PageName = styled(H4)`
+const PageName = styled.h4`
   justify-self: center;
 `;
 
@@ -38,7 +37,7 @@ export const Header: React.FC<Props> = (props) => {
     <Root>
       <LogoAndNameWrapper>
         <CompanyLogoSvg />
-        <H4>{import.meta.env.VITE_APP_NAME}</H4>
+        <h4>{import.meta.env.VITE_APP_NAME}</h4>
       </LogoAndNameWrapper>
       <PageName>{pageName}</PageName>
       <SignUpBtn>Sign Up</SignUpBtn>

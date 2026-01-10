@@ -2,7 +2,6 @@ import { styled } from "@linaria/react";
 import { useState } from "react";
 import { cssFluidClamp, themeToken } from "../../../design/styling/theme/theme";
 import { css } from "@linaria/core";
-import { H3 } from "../../../design/components/headings";
 import { NavLink, Outlet, useLocation } from "react-router";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import HomeIcon from "../../../assets/home.svg?react";
@@ -154,13 +153,13 @@ const NavSideBar = () => {
         >
           <E>E</E>
           <div>
-            <H3
+            <h3
               className={css`
                 font-weight: 700;
               `}
             >
               E-Shop
-            </H3>
+            </h3>
             <span
               className={css`
                 font-size: 12px;

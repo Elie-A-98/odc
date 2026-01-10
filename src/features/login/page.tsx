@@ -8,7 +8,7 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLogin } from "../../api/login.api";
-import { Route, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { navLinkFactory } from "../../lib/navigation/nav-links";
 import { useToast } from "../../design/components/toast/useToast";
 
@@ -181,7 +181,5 @@ const LoginPage = () => {
     </>
   );
 };
-
-LoginPage.Route = <Route path={navLinkFactory.login} Component={LoginPage} />;
 
 export default LoginPage;
