@@ -1,24 +1,19 @@
-import type { ErrorResponse } from "./handlers";
+import { merge } from "lodash";
+import type { ErrorResponse } from "../../api/msw/handlers";
+
 export class ApiError extends Error {
   status?: number;
-  constructor(
-    _message: string,
-    _status?: number
-  ) {
+  constructor(_message: string, _status?: number) {
     super(_message);
     this.name = "ApiError";
     this.status = _status;
   }
 }
 
-export const wrappedFetch = async (
-  url: string,
-  options?: RequestInit
-) => {
+export const safeFetch = async (url: string, options?: RequestInit) => {
   try {
     const res = await fetch(url, {
       ...options,
-      credentials: "include",
     });
 
     if (res.status === 401) {
@@ -39,3 +34,6 @@ export const wrappedFetch = async (
     throw new ApiError("Unknown error");
   }
 };
+
+export const protectedFetch: typeof safeFetch = (...args) =>
+  safeFetch(args[0], merge({}, args[1], { credentials: "include" }));

@@ -64,7 +64,7 @@ Auth is implemented using an HttpOnly session cookie. It is handled in my msw ha
 
 ### fetch
 
-I was planning to add axios and intercept network calls but I ran out of time and stuck to using a `wrappedFetch` that handles http error http responses.
+I was planning to add axios and intercept network calls but I ran out of time and stuck to using a `safeFetch` that handles http error http responses.
 
 ### Server State
 

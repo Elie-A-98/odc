@@ -5,7 +5,7 @@ import {
 } from "@tanstack/react-query";
 import { type ProductFiltersDto, type PaginatedProductsResponseDto } from "./msw/handlers";
 import { apiKeys } from "./api-keys";
-import { wrappedFetch } from "./msw/fetch-utils";
+import { useFetch } from "../lib/fetch/useFetch";
 
 export const useFilteredProducts = (
   filters: ProductFiltersDto,
@@ -13,10 +13,11 @@ export const useFilteredProducts = (
     UseSuspenseQueryOptions<PaginatedProductsResponseDto, DefaultError>
   >
 ) => {
+  const {protectedFetch} = useFetch();
   return useSuspenseQuery<PaginatedProductsResponseDto, DefaultError>({
     queryKey: [apiKeys.getProducts, filters],
     queryFn: async () => {
-      const res = await wrappedFetch("/api/products/filter", {
+      const res = await protectedFetch("/api/products/filter", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
