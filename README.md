@@ -1,3 +1,12 @@
+## Changes from main
+
+- added a light theme and a theme switcher button
+- fixed lazy loaded routes not showing loader on navigation (navigation in dev is still slow on first encounter because the lazy loaded components are esm built at run-time. production build is normally fast)
+- added a global loading indicator on api calls.
+- refactored/cleaned the wrapped fetch
+- cleaned App.tsx startup code and removed duplicate msw calls
+- removed some unused code
+
 ## Screenshots
 
 <img width="1512" height="785" alt="image" src="https://github.com/user-attachments/assets/d460a569-c4bd-497d-a224-ad0092056164" />
@@ -15,9 +24,9 @@ If you have `nvm`, you can do `nvm install 24` `nvm use 24` to easily switch to 
 
 First install the dependencies by running `npm install`
 
-Then, to run in production mode, use `npm run build` then `npm run preview`
+To run use `npm run build` then `npm run preview` (runs in production mode which is preferred)
 
-To run in dev mode, use `npm run dev`.
+To run in dev mode, use `npm run dev` (in dev mode only, first time navigation will be slow)
 
 ## Apis
 
@@ -34,8 +43,6 @@ The dependency rule is:
 - api can only depend on lib
 - design can only depend on lib
 
-I am not religious about this structure, and probably in a real big application dependencies would need to mix a bit.
-
 There's another folder in the root called feature, this belongs in the app group since it's free to use all other groups. It's in root because it's easier to access.
 
 I considered a feature a page, so i followed next.js app router structure.
@@ -49,9 +56,8 @@ Finally I try to not export things that are used in 1 place because when scaled 
 
 The app is fully responsive. I used fluid design and `postcss-pxtorem` to automatically convert almost all px values to rem.
 
-I added a theme but due to time constraints i started hardcoding some values. However the theme is fully spported with typescript intellicense and dynamic variables.
-
-The theme can change and it is built to support that, but because I ran out of time I left both the dark and light themes using the same palettes.
+I added a theme with typescript intellicense and dynamic variables.
+The theme can be switched by either pressing the theme switcher button or changing the user color-scheme preferences in the browser
 
 I used radix unstyled primitives for their good composition and accessibility, and implemented my own design theme.
 
@@ -64,7 +70,7 @@ Auth is implemented using an HttpOnly session cookie. It is handled in my msw ha
 
 ### fetch
 
-I was planning to add axios and intercept network calls but I ran out of time and stuck to using a `safeFetch` that handles http error http responses.
+I was planning to add axios and intercept network calls but for now I stuck to using a `safeFetch` and `protectedfetch` that handles http error http responses and including credentials.
 
 ### Server State
 
@@ -73,7 +79,5 @@ I used react query for the server state, and kept id the single source of truth 
 ## Comments
 
 I focused mainly on the products and login pages, this is where I followed best practices for components composition and accessibility. I added listing, pagination, filtering, decent image optimization, and used react query to represent the server state, and msw and a mock to abstract the backend layer.
-
-But in other pages, even in login and products pages, there is room for improvement in reusability and code structure, but I was iterating fast and I was planning to refactor a little at the end if I still had time.
 
 Regarding the size of the mock data, I added 40 items because I am currently rendering about 6 to 10 products at once on ui and the pagination is done on the backend server (msw api), so adding more items would not slow down the ui. That is also why so I only implemented pagination without virtualization (that I would have done with react virtuozo).
