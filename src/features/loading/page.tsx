@@ -1,4 +1,5 @@
 import { styled } from "@linaria/react";
+import { Loader } from "../../design/components/feedback/loader";
 
 const Root = styled.div`
   height: 100vh;
@@ -8,5 +9,9 @@ const Root = styled.div`
 `;
 
 export const LoadingPage = () => {
-  return <Root>Loading...</Root>;
+  return (
+    <Root>
+      <Loader />
+    </Root>
+  );
 };
