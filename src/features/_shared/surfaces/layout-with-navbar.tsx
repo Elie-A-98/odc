@@ -8,6 +8,7 @@ import HomeIcon from "../../../assets/home.svg?react";
 import ProductsSvgIcon from "../../../assets/products.svg?react";
 import { navLinkFactory } from "../../../lib/navigation/nav-links";
 import { UserProfileAvatar } from "../user/profile-avatar";
+import { ThemeSwitcher } from "../../../design/styling/theme/theme-switcher";
 
 const VIEWPORT_WIDTH_BREAKPOINT = 768;
 
@@ -31,6 +32,7 @@ const ToggleButton = styled.button`
   @media (max-width: ${VIEWPORT_WIDTH_BREAKPOINT}px) {
     display: flex;
     margin-left: auto;
+    position: static;
   }
 `;
 
@@ -141,9 +143,7 @@ const NavSideBar = () => {
           }
         `}
       >
-        <ToggleButton onClick={() => setIsOpen((oldVal) => !oldVal)}>
-          {isOpen ? "✕" : "☰"}
-        </ToggleButton>
+        
         <header
           className={css`
             display: flex;
@@ -170,6 +170,15 @@ const NavSideBar = () => {
               Admin panel
             </span>
           </div>
+
+          <ThemeSwitcher
+            className={css`
+              margin-left: auto;
+            `}
+          />
+          <ToggleButton onClick={() => setIsOpen((oldVal) => !oldVal)}>
+          {isOpen ? "✕" : "☰"}
+        </ToggleButton>
         </header>
         <NavigationMenu.Root
           orientation="vertical"

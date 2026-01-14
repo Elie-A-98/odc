@@ -1,6 +1,7 @@
 import { styled } from "@linaria/react";
 import { themeToken } from "../../design/styling/theme/theme";
 import CompanyLogoSvg from "../../assets/company-logo.svg?react";
+import { ThemeSwitcher } from "../../design/styling/theme/theme-switcher";
 
 const Root = styled.div`
   height: ${themeToken("header-height")};
@@ -22,7 +23,10 @@ const PageName = styled.h4`
   justify-self: center;
 `;
 
-const SignUpBtn = styled.button`
+const ActionsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
   justify-self: end;
 `;
 
@@ -39,7 +43,10 @@ export const Header: React.FC<Props> = (props) => {
         <h4>{import.meta.env.VITE_APP_NAME}</h4>
       </LogoAndNameWrapper>
       <PageName>{pageName}</PageName>
-      <SignUpBtn>Sign Up</SignUpBtn>
+      <ActionsWrapper>
+        <ThemeSwitcher />
+        <button>Sign Up</button>
+      </ActionsWrapper>
     </Root>
   );
 };

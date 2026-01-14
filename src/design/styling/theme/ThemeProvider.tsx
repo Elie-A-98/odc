@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { themeVariants, type ThemeVariants } from "./theme";
+import { ThemeContext } from "./useTheme";
 
 const STORAGE_KEY = "theme-preference";
 
@@ -27,24 +28,35 @@ const getInitialTheme = (): ThemeVariants => {
 };
 
 const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+  const [currentTheme, setCurrentTheme] = useState<ThemeVariants>(() =>
+    getInitialTheme()
+  );
+
+  const toggleTheme = () => {
+    const newTheme: ThemeVariants = currentTheme === "light" ? "dark" : "light";
+    setCurrentTheme(newTheme);
+    applyTheme(newTheme);
+  };
+
   useEffect(() => {
-    const initialTheme = getInitialTheme();
-    applyTheme(initialTheme);
+    applyTheme(currentTheme);
 
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const handleChange = (e: MediaQueryListEvent) => {
       const newTheme: ThemeVariants = e.matches ? "dark" : "light";
-      
-      //   if (!localStorage.getItem(STORAGE_KEY)) {
+      setCurrentTheme(newTheme);
       applyTheme(newTheme);
-      //   }
     };
 
     mediaQuery.addEventListener("change", handleChange);
     return () => mediaQuery.removeEventListener("change", handleChange);
-  }, []);
+  }, [currentTheme]);
 
-  return <>{children}</>;
+  return (
+    <ThemeContext.Provider value={{ currentTheme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
 };
 
 export default ThemeProvider;
