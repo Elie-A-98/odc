@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate, Outlet } from "react-router";
+import { Routes, Route, Navigate, Outlet, useLocation } from "react-router";
 import { lazy, Suspense } from "react";
 import { navLinkFactory } from "../lib/navigation/nav-links";
 import { useAccount } from "../api/account.api";
@@ -20,7 +20,7 @@ const PublicRoute = () => {
   const { data: user, status } = useAccount();
 
   if (status === "pending") return <LoadingPage />;
-  return user != null || status === "success" ? (
+  return user != null && status === "success" ? (
     <Navigate to={navLinkFactory.home} />
   ) : (
     <Outlet />
@@ -32,7 +32,7 @@ const PrivateRoute = () => {
 
   if (status === "pending") return <LoadingPage />;
 
-  return user != null || status === "success" ? (
+  return user != null && status === "success" ? (
     <Outlet />
   ) : (
     <Navigate to={navLinkFactory.login} />
@@ -40,48 +40,36 @@ const PrivateRoute = () => {
 };
 
 export const AppRoutes = () => {
+  const location = useLocation();
   return (
-    <>
+    <Suspense fallback={<LoadingPage />}>
       <Routes>
         <Route element={<PublicRoute />}>
-          <Route
-            path={navLinkFactory.login}
-            element={
-              <Suspense fallback={<LoadingPage />}>
-                <LoginPage />
-              </Suspense>
-            }
-          />
+          <Route path={navLinkFactory.login} element={<LoginPage />} />
         </Route>
         <Route element={<PrivateRoute />}>
-          <Route
-            element={
-              <Suspense fallback={<LoadingPage />}>
-                <LayoutWithLeftNavBar />
-              </Suspense>
-            }
-          >
+          <Route element={<LayoutWithLeftNavBar />}>
             <Route
-              path={navLinkFactory.home}
               element={
-                <Suspense fallback={<LoadingPage />}>
-                  <HomePage />
+                <Suspense key={location.key} fallback={<LoadingPage />}>
+                  <Outlet />
                 </Suspense>
               }
-            />
-            <Route
-              path={navLinkFactory.products}
-              element={
-                <Suspense fallback={<LoadingPage />}>
-                  <ProductsPage />
-                </Suspense>
-              }
-            />
-            {/* <Route path={navLinkFactory.productDetails("{id}")} element={<ProductDetailsPage/>} /> */}
+            >
+              <Route
+                path={navLinkFactory.home}
+                element={<HomePage/>}
+              />
+              <Route
+                path={navLinkFactory.products}
+                element={<ProductsPage />}
+              />
+              {/* <Route path={navLinkFactory.productDetails("{id}")} element={<ProductDetailsPage/>} /> */}
+            </Route>
           </Route>
         </Route>
         <Route path="/" element={<Navigate to={navLinkFactory.home} />} />
       </Routes>
-    </>
+    </Suspense>
   );
 };
