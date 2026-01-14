@@ -8,8 +8,7 @@ const Root = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   padding: ${themeToken("spacing-s")} ${themeToken("spacing-l")};
-  border-bottom: 1px solid #224936;
-  background: #10231a;
+  border-bottom: 1px solid ${themeToken("palette-borders-primary")};
 `;
 
 const LogoAndNameWrapper = styled.div`

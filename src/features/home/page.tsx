@@ -12,7 +12,7 @@ const HeroSection = styled.section`
   margin: ${themeToken("spacing-m")} ${PAGE_HORIZONTAL_PADDING_PX};
   border-radius: 16px;
   overflow: hidden;
-  border: 1px solid #1f3b2d;
+  border: 1px solid ${themeToken("palette-borders-secondary")};
   isolation: isolate;
 `;
 
@@ -34,8 +34,8 @@ const HeroOverlay = styled.div`
   inset: 0;
   background: linear-gradient(
     to right,
-    #102219 0%,
-    rgba(16, 34, 25, 0.8) 50%,
+    ${themeToken("palette-surfaces-primary")} 0%,
+    ${themeToken("palette-backgrounds-overlay-surface-80")} 50%,
     transparent 100%
   );
 `;
@@ -56,21 +56,21 @@ const Badge = styled.div`
   gap: ${themeToken("spacing-xs")};
   padding: ${themeToken("spacing-xs")} ${themeToken("spacing-s")};
   border-radius: 9999PX;
-  background: rgba(13, 242, 128, 0.2);
-  border: 1px solid rgba(13, 242, 128, 0.3);
+  background: ${themeToken("palette-backgrounds-overlay-accent-20")};
+  border: 1px solid ${themeToken("palette-borders-accent-30a")};
   backdrop-filter: blur(4px);
   width: fit-content;
 `;
 
 const BadgeIcon = styled.span`
   font-size: 14px;
-  color: #0df280;
+  color: ${themeToken("palette-text-accent")};
 `;
 
 const BadgeText = styled.span`
   font-size: 12px;
   font-weight: 700;
-  color: #0df280;
+  color: ${themeToken("palette-text-accent")};
   text-transform: uppercase;
   letter-spacing: 0.05em;
 `;
@@ -84,7 +84,11 @@ const HeroTitle = styled.h1`
 `;
 
 const HeroHighlight = styled.span`
-  background: linear-gradient(to right, #0df280, #ffd700);
+  background: linear-gradient(
+    to right,
+    ${themeToken("palette-text-accent")},
+    ${themeToken("palette-text-highlight")}
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -94,7 +98,7 @@ const HeroDescription = styled.p`
   font-size: ${cssFluidClamp(14, 18)};
   font-weight: 500;
   line-height: 1.6;
-  color: #90cbad;
+  color: ${themeToken("palette-text-tertiary-inverted")};
   max-width: 540px;
 `;
 
@@ -112,18 +116,18 @@ const PrimaryButton = styled.button`
   height: 48px;
   padding: 0 ${themeToken("spacing-m")};
   border-radius: 8px;
-  background: #0df280;
-  color: #102219;
+  background: ${themeToken("palette-backgrounds-accent")};
+  color: ${themeToken("palette-text-on-accent")};
   font-size: 16px;
   font-weight: 700;
   border: none;
   cursor: pointer;
   transition: all 0.2s;
-  box-shadow: 0 0 20px rgba(13, 242, 128, 0.4);
+  box-shadow: 0 0 20px ${themeToken("palette-effects-glow-accent-40a")};
 
   &:hover {
     transform: translateY(-2px);
-    background: #0cd970;
+    background: ${themeToken("palette-backgrounds-accent-hover")};
   }
 `;
 
@@ -141,17 +145,21 @@ const StatCard = styled.div`
   gap: ${themeToken("spacing-xs")};
   padding: ${themeToken("spacing-m")};
   border-radius: 12px;
-  background: #182e22;
-  border: 1px solid #1f3b2d;
+  background: ${themeToken("palette-backgrounds-card-alt")};
+  border: 1px solid ${themeToken("palette-borders-secondary")};
   transition: border-color 0.2s;
   cursor: default;
 
   &:hover {
-    border-color: rgba(13, 242, 128, 0.5);
+    border-color: ${themeToken("palette-borders-accent-50a")};
   }
 
   &:last-child {
-    background: linear-gradient(to bottom right, #1f3b2d, #182e22);
+    background: linear-gradient(
+      to bottom right,
+      ${themeToken("palette-borders-secondary")},
+      ${themeToken("palette-backgrounds-card-alt")}
+    );
     cursor: pointer;
   }
 `;
@@ -166,12 +174,12 @@ const StatHeader = styled.div`
 const StatLabel = styled.p`
   font-size: 14px;
   font-weight: 500;
-  color: #90cbad;
+  color: ${themeToken("palette-text-tertiary-inverted")};
 `;
 
 const StatIcon = styled.span`
   font-size: 24px;
-  color: #ffd700;
+  color: ${themeToken("palette-text-highlight")};
   transition: transform 0.2s;
 
   ${StatCard}:hover & {
@@ -187,7 +195,7 @@ const StatValue = styled.p`
 
 const StatDescription = styled.p`
   font-size: 12px;
-  color: #64748b;
+  color: ${themeToken("palette-text-muted")};
 `;
 
 const PremiumContent = styled.div`
@@ -200,7 +208,7 @@ const PremiumIcon = styled.span`
   right: -16px;
   bottom: -16px;
   font-size: 100px;
-  color: rgba(255, 255, 255, 0.1);
+  color: ${themeToken("palette-effects-premium-overlay")};
   transition: opacity 0.2s;
 
   ${StatCard}:hover & {
@@ -217,14 +225,14 @@ const PremiumTitle = styled.p`
 
 const PremiumDescription = styled.p`
   font-size: 14px;
-  color: #90cbad;
+  color: ${themeToken("palette-text-tertiary-inverted")};
   margin-bottom: ${themeToken("spacing-s")};
 `;
 
 const PremiumLink = styled.span`
   font-size: 12px;
   font-weight: 700;
-  color: #ffd700;
+  color: ${themeToken("palette-text-highlight")};
   text-transform: uppercase;
   letter-spacing: 0.05em;
   display: flex;
@@ -249,7 +257,7 @@ const SectionTitle = styled.h2`
 const ViewAllLink = styled.a`
   font-size: 14px;
   font-weight: 700;
-  color: #ffd700;
+  color: ${themeToken("palette-text-highlight")};
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -275,7 +283,7 @@ const CategoryCard = styled.article`
   overflow: hidden;
   aspect-ratio: 4/3;
   cursor: pointer;
-  border: 1px solid #1f3b2d;
+  border: 1px solid ${themeToken("palette-borders-secondary")};
   transition: transform 0.2s;
 
   &:hover {
@@ -301,8 +309,8 @@ const CategoryOverlay = styled.div`
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(0, 0, 0, 0.9) 0%,
-    rgba(0, 0, 0, 0.4) 50%,
+    ${themeToken("palette-backgrounds-overlay-dark-90")} 0%,
+    ${themeToken("palette-backgrounds-overlay-dark-40")} 50%,
     transparent 100%
   );
 `;
@@ -318,7 +326,7 @@ const CategoryContent = styled.div`
 const CategoryBadge = styled.p`
   font-size: 12px;
   font-weight: 700;
-  color: #ffd700;
+  color: ${themeToken("palette-text-highlight")};
   text-transform: uppercase;
   margin-bottom: ${themeToken("spacing-xs")};
 `;
@@ -340,15 +348,15 @@ const CategoryName = styled.h3`
 
 const CategoryDescription = styled.p`
   font-size: 14px;
-  color: #cbd5e1;
+  color: ${themeToken("palette-text-muted-inverted")};
 `;
 
 const CategoryIconWrapper = styled.div`
-  background: rgba(13, 242, 128, 0.2);
+  background: ${themeToken("palette-backgrounds-overlay-accent-20")};
   backdrop-filter: blur(16px);
   padding: ${themeToken("spacing-xs")};
   border-radius: 8px;
-  color: #0df280;
+  color: ${themeToken("palette-text-accent")};
   opacity: 0;
   transform: translateY(8px);
   transition: all 0.3s;

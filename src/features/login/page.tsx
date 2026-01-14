@@ -23,9 +23,9 @@ const Overlay = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background: red;
+  background: ${themeToken("palette-backgrounds-overlay-accent-5")};
   border-radius: 9999PX;
-  background: rgba(13, 242, 128, 0.05);
+  background: ${themeToken("palette-backgrounds-overlay-accent-5")};
   filter: blur(60px);
   width: ${CARD_WIDTH * 2}px;
   aspect-ratio: 1;
@@ -35,7 +35,7 @@ const Overlay = styled.div`
 
 const Lock = {
   RootWrapper: styled.div`
-    background-color: #224936;
+    background-color: ${themeToken("palette-backgrounds-icon")};
     width: fit-content;
     border-radius: 100%;
     width: 48px;
@@ -46,7 +46,7 @@ const Lock = {
     margin: auto;
   `,
   Icon: styled(LockIcon)`
-    color: #0df280;
+    color: ${themeToken("palette-text-accent")};
   `,
 };
 
@@ -59,9 +59,9 @@ const CardRoot = styled.div`
   max-width: 90%;
   padding: ${themeToken("spacing-l")};
   border-radius: 16px;
-  border: 1px solid #31684d;
-  background: #183426;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: 1px solid ${themeToken("palette-borders-primary")};
+  background: ${themeToken("palette-backgrounds-card")};
+  box-shadow: 0 25px 50px -12px ${themeToken("palette-effects-shadow")};
 `;
 const Title = styled.h1`
   margin-top: ${themeToken("spacing-s")};
@@ -69,7 +69,7 @@ const Title = styled.h1`
 `;
 const Banner = styled.h5`
   margin-top: ${themeToken("spacing-xs")};
-  color: #90cbad;
+  color: ${themeToken("palette-text-tertiary-inverted")};
   text-align: center;
   font-weight: 400;
 `;
@@ -84,9 +84,9 @@ const SubmitBtn = styled.button`
   height: 48px;
   padding: 0 16px;
   border-radius: 8px;
-  background: #0df280;
+  background: ${themeToken("palette-backgrounds-accent")};
   width: 100%;
-  color: #102219;
+  color: ${themeToken("palette-text-on-accent")};
   text-align: center;
   font-size: 16px;
   font-weight: 700;

@@ -5,16 +5,22 @@ import {
   priceRange,
   type useFilters,
 } from "./useFilters";
-import { FieldLayout, fieldLayoutClasses } from "../../../../design/components/form/FieldLayout";
+import {
+  FieldLayout,
+  fieldLayoutClasses,
+} from "../../../../design/components/form/FieldLayout";
 import { Select } from "../../../../design/components/select/select";
 import { Controller } from "react-hook-form";
 import { Slider } from "../../../../design/components/slider/slider";
 import { css } from "@linaria/core";
 import { styled } from "@linaria/react";
+import {
+  themeToken,
+} from "../../../../design/styling/theme/theme";
 
 const YStackStyled = styled(FieldLayout.YStack)`
   .${fieldLayoutClasses.label} {
-    color: #90cbad;
+    color: ${themeToken("palette-text-tertiary-inverted")};
     font-size: 12px;
     font-weight: 500;
   }

@@ -1,6 +1,10 @@
 import { styled } from "@linaria/react";
 import { useFilteredProducts } from "../../../api/products.api";
-import { cssFluidClamp, themeToken } from "../../../design/styling/theme/theme";
+import {
+  cssFluidClamp,
+  themeToken,
+  themeVariants,
+} from "../../../design/styling/theme/theme";
 import { css } from "@linaria/core";
 import { Suspense, useEffect, useMemo, useState } from "react";
 import StarIcon from "../../../assets/star.svg?react";
@@ -29,12 +33,12 @@ const ProductCard = styled(motion.article)`
   transition: transform 0.2s, box-shadow 0.2s;
   cursor: pointer;
   border-radius: 12px;
-  border: 1px solid #1f3b2d;
-  background: #182e22;
+  border: 1px solid ${themeToken("palette-borders-secondary")};
+  background: ${themeToken("palette-backgrounds-card-alt")};
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 16px ${themeToken("palette-effects-card-shadow")};
   }
 `;
 
@@ -55,7 +59,7 @@ const ProductName = styled.h4`
 const ProductDescription = styled.p`
   margin-top: ${themeToken("spacing-xxs")};
   font-size: 14px;
-  color: #90cbad;
+  color: ${themeToken("palette-text-tertiary-inverted")};
   font-weight: 400;
   margin-bottom: ${themeToken("spacing-s")};
   flex: 1;
@@ -71,7 +75,7 @@ const ProductRating = styled.span`
   gap: ${themeToken("spacing-xs")};
   font-size: 12px;
   font-weight: 400;
-  color: #90cbad;
+  color: ${themeToken("palette-text-tertiary-inverted")};
   margin-top: auto;
 `;
 
@@ -81,7 +85,7 @@ const ProductMeta = styled.div`
   align-items: center;
   gap: ${themeToken("spacing-s")};
   margin-top: ${themeToken("spacing-s")};
-  border-top: 1px solid #1f3b2d;
+  border-top: 1px solid ${themeToken("palette-borders-secondary")};
   padding-top: ${themeToken("spacing-s")};
 `;
 
@@ -100,8 +104,13 @@ const AvailabilityBadge = styled.span<{ available: boolean }>`
   border-radius: 4px;
   font-weight: 600;
   background-color: ${(props) =>
-    props.available ? "rgba(13, 242, 128, 0.1)" : "rgba(242, 13, 13, 0.1)"};
-  color: ${(props) => (props.available ? "#0df280" : "#f20d0d")};
+    props.available
+      ? themeToken("palette-backgrounds-overlay-accent-10")
+      : themeToken("palette-backgrounds-error-weak")};
+  color: ${(props) =>
+    props.available
+      ? themeToken("palette-text-accent")
+      : themeToken("palette-text-error-strong")};
 `;
 
 const PaginationContainer = styled.div`
@@ -118,17 +127,26 @@ const PaginationButton = styled.button<{ active?: boolean }>`
   height: 40px;
   padding: 0 12px;
   border-radius: 8px;
-  border: 1px solid #1f3b2d;
-  background: ${(props) => (props.active ? "#0df280" : "#182e22")};
-  color: ${(props) => (props.active ? "#0a1812" : "#90cbad")};
+  border: 1px solid ${themeToken("palette-borders-secondary")};
+  background: ${(props) =>
+    props.active
+      ? themeToken("palette-backgrounds-accent")
+      : themeToken("palette-backgrounds-card-alt")};
+  color: ${(props) =>
+    props.active
+      ? themeToken("palette-text-on-accent-strong")
+      : themeToken("palette-text-tertiary-inverted")};
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
 
   &:hover:not(:disabled) {
-    background: ${(props) => (props.active ? "#0df280" : "#1f3b2d")};
-    border-color: #31684d;
+    background: ${(props) =>
+      props.active
+        ? themeToken("palette-backgrounds-accent")
+        : themeToken("palette-backgrounds-card-alt-hover")};
+    border-color: ${themeToken("palette-borders-primary")};
   }
 
   &:disabled {
@@ -138,7 +156,7 @@ const PaginationButton = styled.button<{ active?: boolean }>`
 `;
 
 const PaginationEllipsis = styled.span`
-  color: #90cbad;
+  color: ${themeToken("palette-text-tertiary-inverted")};
   padding: 0 8px;
   user-select: none;
 `;
@@ -170,15 +188,15 @@ const ProductsList: React.FC<{ filters: FilterValues }> = ({
     <>
       <ProductsGrid>
         {products.map((product, index) => (
-          <ProductCard 
+          <ProductCard
             key={product.id}
             layout
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ 
-              duration: 0.4, 
+            transition={{
+              duration: 0.4,
               delay: index * 0.05,
-              layout: { duration: 0.3 }
+              layout: { duration: 0.3 },
             }}
           >
             <ProductImage
@@ -190,14 +208,17 @@ const ProductsList: React.FC<{ filters: FilterValues }> = ({
               <ProductName>{product.name}</ProductName>
               <ProductDescription>{product.description}</ProductDescription>
               <ProductRating>
-                {Array.from({ length: Math.trunc(product.ratings) }, (_, index) => (
-                  <StarIcon
-                    key={index}
-                    className={css`
-                      color: #facc15;
-                    `}
-                  />
-                ))}
+                {Array.from(
+                  { length: Math.trunc(product.ratings) },
+                  (_, index) => (
+                    <StarIcon
+                      key={index}
+                      className={css`
+                        color: ${themeToken("palette-text-rating")};
+                      `}
+                    />
+                  )
+                )}
                 ({product.ratings})
               </ProductRating>
               <ProductMeta>
@@ -248,7 +269,7 @@ const ProductsPage = () => {
             margin-block-start: 4px;
             font-size: ${cssFluidClamp(14, 16)};
             font-weight: 400;
-            color: #90cbad;
+            color: ${themeToken("palette-text-tertiary-inverted")};
           `}
         >
           Manage your inventory, pricing, and availability.
@@ -258,9 +279,14 @@ const ProductsPage = () => {
           className={css`
             margin-top: ${themeToken("spacing-m")};
             border-radius: 12px;
-            border: 1px solid #1f3b2d;
-            background: rgba(24, 46, 34, 0.5);
+            border: 1px solid ${themeToken("palette-borders-secondary")};
+            background: ${themeToken("palette-backgrounds-overlay-surface-50")};
             padding: ${themeToken("spacing-s")};
+
+            .${themeVariants.light} & {
+              background: ${themeToken("palette-backgrounds-card")};
+              border: 1px solid ${themeToken("palette-borders-primary")};
+            }
           `}
         >
           <Filters {...filterForm} />
@@ -268,7 +294,7 @@ const ProductsPage = () => {
       </header>
       <main
         className={css`
-          border-top: 1px solid #1f3b2d;
+          border-top: 1px solid ${themeToken("palette-borders-secondary")};
         `}
       >
         <Suspense fallback={<div>Loading products...</div>}>

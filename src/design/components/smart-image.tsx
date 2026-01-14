@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { css, cx } from "@linaria/core";
+import { themeToken } from "../styling/theme/theme";
 
 interface SmartImageProps {
   src: string;
@@ -30,7 +31,7 @@ export const SmartImage: React.FC<SmartImageProps> = ({
           css`
             width: 100%;
             height: 100%;
-            background-color: #102219;
+            background-color: ${themeToken("palette-surfaces-primary")};
           `,
           className
         )}

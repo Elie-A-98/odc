@@ -19,13 +19,13 @@ const ToggleButton = styled.button`
   width: 40px;
   height: 40px;
   padding: 0;
-  background-color: #0b1610;
-  border: 1px solid #1f3b2d;
+  background-color: ${themeToken("palette-surfaces-sidebar")};
+  border: 1px solid ${themeToken("palette-borders-secondary")};
   border-radius: 4px;
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  color: #0df280;
+  color: ${themeToken("palette-text-accent")};
   font-size: 20px;
 
   @media (max-width: ${VIEWPORT_WIDTH_BREAKPOINT}px) {
@@ -35,7 +35,7 @@ const ToggleButton = styled.button`
 `;
 
 const SideBar = styled.div`
-  background-color: #0b1610;
+  background-color: ${themeToken("palette-surfaces-sidebar")};
   flex: 0.13 0 auto;
   padding: 16px;
   position: sticky;
@@ -77,7 +77,7 @@ const Overlay = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: ${themeToken("palette-backgrounds-overlay-dark-50")};
     z-index: 10;
     opacity: 0;
     pointer-events: none;
@@ -114,13 +114,13 @@ const NavLinkWrapper = styled(NavigationMenu.Link)`
   font-weight: 500;
   border-radius: 8px;
   &:hover {
-    background-color: rgba(13, 242, 128, 0.1);
+    background-color: ${themeToken("palette-backgrounds-overlay-accent-10")};
   }
 
   &[data-active] {
-    background-color: rgba(13, 242, 128, 0.1);
-    border-right: 2px solid #0df280;
-    color: #0df280;
+    background-color: ${themeToken("palette-backgrounds-overlay-accent-10")};
+    border-right: 2px solid ${themeToken("palette-borders-accent")};
+    color: ${themeToken("palette-text-accent")};
   }
 `;
 
@@ -215,7 +215,7 @@ const NavSideBar = () => {
         <footer
           className={css`
             margin-top: auto;
-            border-top: 1px solid #1f3b2d;
+            border-top: 1px solid ${themeToken("palette-borders-secondary")};
             padding-block-start: 16px;
           `}
         >

@@ -5,7 +5,7 @@ import { cssFluidClamp, themeToken } from "../styling/theme/theme";
 const AlertOverlay = styled(AlertDialog.Overlay)`
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: ${themeToken("palette-backgrounds-overlay-dark-70")};
   animation: fadeIn 200ms ease-out;
 
   @keyframes fadeIn {
@@ -27,9 +27,9 @@ const AlertContent = styled(AlertDialog.Content)`
   max-width: 90%;
   padding: ${themeToken("spacing-l")};
   border-radius: 16px;
-  border: 1px solid #31684d;
-  background: #183426;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: 1px solid ${themeToken("palette-borders-primary")};
+  background: ${themeToken("palette-backgrounds-card")};
+  box-shadow: 0 25px 50px -12px ${themeToken("palette-effects-shadow")};
   animation: slideUp 200ms ease-out;
 
   @keyframes slideUp {
@@ -47,21 +47,21 @@ const AlertContent = styled(AlertDialog.Content)`
 const AlertTitle = styled(AlertDialog.Title)`
   font-size: 24px;
   font-weight: 700;
-  color: #ff6b6b;
+  color: ${themeToken("palette-text-error")};
   margin-bottom: ${themeToken("spacing-s")};
 `;
 
 const AlertDescription = styled(AlertDialog.Description)`
   font-size: 14px;
-  color: #90cbad;
+  color: ${themeToken("palette-text-tertiary-inverted")};
   margin-bottom: ${themeToken("spacing-xs")};
   line-height: 1.5;
 `;
 
 const ErrorDetails = styled.pre`
   font-size: 12px;
-  color: #64748b;
-  background: rgba(0, 0, 0, 0.3);
+  color: ${themeToken("palette-text-muted")};
+  background: ${themeToken("palette-effects-toast-shadow")};
   padding: ${themeToken("spacing-s")};
   border-radius: 8px;
   overflow: auto;
@@ -80,8 +80,8 @@ const AlertButton = styled(AlertDialog.Action)`
   height: 40px;
   padding: 0 16px;
   border-radius: 8px;
-  background: #0df280;
-  color: #102219;
+  background: ${themeToken("palette-backgrounds-accent")};
+  color: ${themeToken("palette-text-on-accent")};
   text-align: center;
   font-size: 14px;
   font-weight: 700;
@@ -90,7 +90,7 @@ const AlertButton = styled(AlertDialog.Action)`
   transition: background-color 200ms;
 
   &:hover {
-    background-color: #0cd970;
+    background-color: ${themeToken("palette-backgrounds-accent-hover")};
   }
 `;
 

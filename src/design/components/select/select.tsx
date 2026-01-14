@@ -40,8 +40,8 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(({
           align-items: center;
           justify-content: space-between;
           border-radius: 8px;
-          border: 1px solid #31684d;
-          background: #10231a; /* same as inputs */
+          border: 1px solid ${themeToken("palette-borders-primary")};
+          background: ${themeToken("palette-backgrounds-input")};
           color: inherit;
           font-size: ${themeToken("typography-sizes-button")};
           height: ${cssFluidClamp(30, 40)};
@@ -50,15 +50,15 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(({
           box-sizing: border-box;
 
           &::placeholder {
-            color: rgba(144, 203, 173, 0.5);
+            color: ${themeToken("spring-green-68-50a")};
           }
 
           &:hover {
-            border-color: #0df280;
+            border-color: ${themeToken("palette-borders-accent")};
           }
 
           &[data-state="open"] {
-            border-color: #0df280;
+            border-color: ${themeToken("palette-borders-accent")};
           }
         `}
         aria-label={ariaLabel}
@@ -70,10 +70,10 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(({
       <SelectPrimitive.Portal>
         <SelectPrimitive.Content
           className={css`
-            background: #10231a; /* match input background */
-            border: 1px solid #31684d;
+            background: ${themeToken("palette-backgrounds-input")};
+            border: 1px solid ${themeToken("palette-borders-primary")};
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 12px ${themeToken("palette-effects-toast-shadow")};
             z-index: 1000;
             min-width: var(--radix-select-trigger-width);
             box-sizing: border-box;
@@ -101,17 +101,17 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(({
                   transition: background 0.15s, color 0.15s;
 
                   &:hover {
-                    background: #31684d;
+                    background: ${themeToken("palette-borders-primary")};
                   }
 
                   &[data-state="checked"] {
-                    background: #0df280;
-                    color: #10231a;
+                    background: ${themeToken("palette-backgrounds-accent")};
+                    color: ${themeToken("palette-text-on-accent-alt")};
                     font-weight: 500;
                   }
 
                   &[data-disabled] {
-                    color: #6b7280;
+                    color: ${themeToken("palette-text-muted")};
                     cursor: not-allowed;
                   }
                 `}

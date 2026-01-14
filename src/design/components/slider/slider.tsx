@@ -1,6 +1,7 @@
 import React from "react";
 import * as RadixSlider from "@radix-ui/react-slider";
 import { styled } from "@linaria/react";
+import { themeToken } from "../../styling/theme/theme";
 
 const Root = styled(RadixSlider.Root)`
   position: relative;
@@ -16,7 +17,7 @@ const Root = styled(RadixSlider.Root)`
 
 const Track = styled(RadixSlider.Track)`
   /* right-of-handle bar */
-  background: #1f3b2d;
+  background: ${themeToken("palette-borders-secondary")};
   position: relative;
   flex-grow: 1;
   border-radius: 9999px;
@@ -28,7 +29,7 @@ const Track = styled(RadixSlider.Track)`
 const Range = styled(RadixSlider.Range)`
   /* left-of-handle (filled) bar */
   position: absolute;
-  background: #0df280;
+  background: ${themeToken("palette-backgrounds-accent")};
   border-radius: 9999px;
   height: 100%;
 `;
@@ -39,10 +40,10 @@ const Thumb = styled(RadixSlider.Thumb)`
   width: 20px;
   height: 20px;
   border-radius: 9999px;
-  background: #0df280;
-  border: 2px solid #182e22;
-  box-shadow: 0 1px 3px 0 rgba(13, 242, 128, 0.5),
-    0 1px 2px -1px rgba(13, 242, 128, 0.5);
+  background: ${themeToken("palette-backgrounds-accent")};
+  border: 2px solid ${themeToken("palette-backgrounds-card-alt")};
+  box-shadow: 0 1px 3px 0 ${themeToken("palette-borders-accent-50a")},
+    0 1px 2px -1px ${themeToken("palette-borders-accent-50a")};
   z-index: 2;
 
   &:hover {
@@ -51,7 +52,7 @@ const Thumb = styled(RadixSlider.Thumb)`
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 5px rgba(13, 242, 128, 0.15);
+    box-shadow: 0 0 0 5px ${themeToken("palette-effects-focus-ring")};
   }
 `;
 
@@ -61,7 +62,7 @@ const RangeLabel = styled.div`
   align-items: center;
   margin-bottom: 8px;
   font-size: 13px;
-  color: #0df280;
+  color: ${themeToken("palette-text-accent")};
 `;
 
 export type SliderProps = {

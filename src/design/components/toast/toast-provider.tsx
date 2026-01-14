@@ -26,9 +26,9 @@ const ToastRoot = styled(Toast.Root)`
   align-items: center;
   padding: ${themeToken("spacing-s")};
   border-radius: 8px;
-  border: 1px solid #31684d;
-  background: #183426;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border: 1px solid ${themeToken("palette-borders-primary")};
+  background: ${themeToken("palette-backgrounds-card")};
+  box-shadow: 0 4px 12px ${themeToken("palette-effects-toast-shadow")};
   animation: slideIn 200ms ease-out;
 
   @keyframes slideIn {
@@ -57,12 +57,12 @@ const ToastRoot = styled(Toast.Root)`
 const ToastTitle = styled(Toast.Title)`
   font-size: 14px;
   font-weight: 700;
-  color: #ff6b6b;
+  color: ${themeToken("palette-text-error")};
 `;
 
 const ToastDescription = styled(Toast.Description)`
   font-size: 13px;
-  color: #90cbad;
+  color: ${themeToken("palette-text-tertiary-inverted")};
   grid-column: 1;
 `;
 
@@ -70,16 +70,16 @@ const ToastAction = styled(Toast.Action)`
   padding: 6px 12px;
   border-radius: 6px;
   background: transparent;
-  border: 1px solid #90cbad;
-  color: #90cbad;
+  border: 1px solid ${themeToken("palette-borders-accent-weak")};
+  color: ${themeToken("palette-text-tertiary-inverted")};
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
   transition: all 200ms;
 
   &:hover {
-    background: #90cbad;
-    color: #102219;
+    background: ${themeToken("palette-backgrounds-accent-weak")};
+    color: ${themeToken("palette-text-on-accent")};
   }
 `;
 
