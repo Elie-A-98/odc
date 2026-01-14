@@ -50,7 +50,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(({
           box-sizing: border-box;
 
           &::placeholder {
-            color: ${themeToken("spring-green-68-50a")};
+            color: ${themeToken("palette-text-muted")};
           }
 
           &:hover {
