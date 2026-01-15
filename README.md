@@ -9,11 +9,13 @@
 
 ## Screenshots
 
-<img width="1512" height="785" alt="image" src="https://github.com/user-attachments/assets/d460a569-c4bd-497d-a224-ad0092056164" />
+<img width="1512" height="785" alt="image" src="https://github.com/user-attachments/assets/50c5ae94-921a-42cb-bcf0-9ed6d18a14fe" />
 
-![login-desktop](image.png)
 
-<img width="1512" height="785" alt="image" src="https://github.com/user-attachments/assets/49dc2e8e-caa6-4d67-8b70-12d2486da86a" />
+<img width="747" height="785" alt="image" src="https://github.com/user-attachments/assets/9ad56c8a-1e5e-4ff6-ac5b-01707e659892" />
+
+
+<img width="747" height="785" alt="image" src="https://github.com/user-attachments/assets/f24043b1-72b8-43a2-be7a-858c899187f3" />
 
 
 
